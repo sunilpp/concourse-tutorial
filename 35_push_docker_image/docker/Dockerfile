@@ -1,4 +1,4 @@
-FROM ubuntu#14.04
+FROM ubuntu
 
 ADD hello-world /bin/hello-world
 #Install WGET
