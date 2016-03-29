@@ -1,4 +1,4 @@
-FROM busybox
+FROM ubuntu#14.04
 
 ADD hello-world /bin/hello-world
 #Install WGET
