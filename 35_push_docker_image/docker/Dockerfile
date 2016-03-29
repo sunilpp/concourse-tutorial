@@ -18,5 +18,18 @@ RUN cd /space;tar xvf apache-tomcat-8.0.33.tar
 RUN chmod -R 755 /space/apache-tomcat-8.0.33.tar
 RUN rm -f /space/apache-tomcat-8.0.33.tar.gz
 
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y -q vim bzr git gdb openssh-server
+
+RUN echo 'root:root' | chpasswd
+RUN mkdir -p /var/run/sshd
+
+RUN sed -ri 's/UsePAM yes/#UsePAM yes/g' /etc/ssh/sshd_config
+RUN sed -ri 's/#UsePAM no/UsePAM no/g' /etc/ssh/sshd_config
+RUN sed -ri 's/PermitRootLogin without-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
+
+EXPOSE 22
+
+CMD /usr/sbin/sshd -D
+
 ENTRYPOINT ["/bin/hello-world"]
 CMD ["world"]
