@@ -7,7 +7,7 @@ ADD hello-world /bin/hello-world
 #RUN yum install -y tar
 RUN apt-get update
 RUN apt-get -f install
-RUN apt-get install wget
+RUN apt-get install -y wget
 
 RUN mkdir /space
 # Download and install Tomcat
